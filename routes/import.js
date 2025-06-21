@@ -55,7 +55,7 @@ router.post('/import-users', upload.single('file'), async (req, res) => {
 
         // ✅ Send email if trainer
         if (existingUser.role === 'trainer') {
-          sendTrainerEmail(existingUser.email, existingUser.name); // Don't await to keep API responsive
+          await sendTrainerEmail(existingUser.email, existingUser.name); // Don't await to keep API responsive
         }
 
         await existingUser.save();
@@ -66,7 +66,7 @@ router.post('/import-users', upload.single('file'), async (req, res) => {
 
        // ✅ Send email if trainer
         if (user.role === 'trainer') {
-        sendTrainerEmail(user.email, user.name); // Don't await to keep API responsive
+        await sendTrainerEmail(user.email, user.name); // Don't await to keep API responsive
         }
 
       await newUser.save();
